@@ -1,0 +1,273 @@
+/* Default Navigation Styles */
+body 
+{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: .5; 
+}
+header /* Header Style */
+{ 
+    background-color: white;
+    color: black;
+    text-align: center; /* Aligns title head in center */
+    padding: 20px;
+}
+
+nav 
+{
+    position: relative;
+}
+
+nav ul 
+{
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    background-color: #42078f;
+    display: flex;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+nav ul li 
+{
+    color:red; /* Link color */
+    margin: 0 10px;
+    text-decoration: none;
+    padding: 10px 20px; /* Makes the button link box larger for clicking */
+    font-size: 18px;
+    transition: background-color 0.2s; /* Hover transition */
+}
+
+nav ul li a 
+{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+/* Hamburger menu icon */
+.hamburger 
+{
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+}
+
+/* For mobile */
+@media (max-width: 600px) 
+{
+    nav ul 
+    {
+        display: none; /* Default = hide menu */
+        flex-direction: column; /* vertical stack */
+        background-color: #42078f;
+        align-items: center;
+        justify-content: center;
+        position: fixed; /* No menu scroll */
+        top: 0; left: 0; /* Anchors menu @ top-left */
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.8) /* Adds transparency */
+    }
+    nav ul li 
+    {
+        margin: 20px 0; /* Spacing for menu links */
+        border-bottom: none;
+    }
+    .hamburger 
+    {
+        display: block; /* Display Hamburger menu icon on smaller screens */
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 1;
+    }
+}
+
+@media (min-width: 601px) 
+{
+    nav ul 
+    {
+        display: flex; /* Show menu items in header */
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    nav ul li 
+    {
+        margin: 0 15px;
+    }
+}
+
+/* Info section styke */
+.info-section 
+{
+    padding: 20px;
+    text-align: left;
+    background-color: #f9f9f9; /* Light color for contrast */
+
+}
+.info-section ul 
+{
+    list-style-type: disc; /* Default bullet points for index list */
+    padding-left: 40px; /* indents list from left */
+    display: inline-block;
+    margin: 0 auto;
+}
+.info-section li
+{
+    margin: 10px;
+}
+
+/* Yurt Section style ----------------------------------------------------------------------------*/
+.yurts-info
+{
+    padding: 40px;
+    text-align: left;
+    background-color: #f9f9f9; /* color for contrast */
+}
+@media (max-width: 576px) 
+{
+    .yurts-info 
+    {
+        text-align: center; /* Center-align text on small screens */
+    }
+
+    .yurts-info h2, .yurts-info h3 
+    {
+        margin: 15px 0; /* Margin for smaller screens */
+    }
+}
+
+@media (min-width: 577px) 
+{
+    .yurts-info 
+    {
+        text-align: left; /* Left-align text on large screens */
+    }
+}
+
+/* Reservation Section style ---------------------------------------------------------------------*/
+.reservation-table 
+{
+    text-align: left;
+    padding: 20px;
+    width: 60%;
+    background-color: #f8f8f8; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* shadow for depth */
+}
+
+.reservation-table table 
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reservation-table td
+{
+    padding: 10px;
+    
+}
+
+@media (max-width: 576px)
+{
+    .reservation-table
+    {
+        text-align: center;
+        
+    }
+
+}
+
+@media (max-width: 577px)
+{
+    .reservation-table
+    {
+        text-align: left;
+        padding: 20px;
+    }
+}
+
+/* Activities Section style ----------------------------------------------------------------------*/
+activities 
+{
+    padding: 40px;
+    text-align: center; 
+}
+
+.activity-grid 
+{
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); /* 2x2 */
+    gap: 15px; /* padding between images */
+    padding: 20px; /* padding for left and right side of pages for img grid */
+}
+
+.activity-grid img 
+{
+    width: 100%; height: 300px;
+    object-fit:cover; /* forces images to cover the area they are assigned */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; 
+}
+
+.overlay 
+{
+    display: none; /* default = hidden */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); 
+    justify-content: center;
+    align-items: center;
+}
+
+.full-image 
+{
+    max-width: 90%; max-height: 90%; /* Limit full image height/width */
+}
+
+/* Responsive Styles */
+@media (max-width: 576px) 
+{
+    .activity-grid 
+    {
+        grid-template-columns: repeat(1, 1fr); /* 1 columns on small devices */
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) 
+{
+    .activity-grid 
+    {
+        grid-template-columns: repeat(2, 1fr); /* 2 colums on med devices */
+    }
+}
+
+@media (min-width: 769px) 
+{
+    .activity-grid 
+    {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on large devices */
+    }
+}
+
+/* Footer style ----------------------------------------------------------------------------------*/
+footer 
+{
+    background-color: #42078f;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 30px;
+    
+}
