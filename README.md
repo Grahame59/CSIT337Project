@@ -16,3 +16,4 @@ A Website midterm project for CSIT 337 @ Montclair State University.
 
 # Timeline / Self Notes and Progress
 - (10/31/24 - 9:53pm -> 11/1/24 - 2:23am) Completed the main features of index, activities, yurts, reservations. As well as most of the CSS for these pages, and polished most of the code for these pages already. Have to do comments page still and then check the mobile viewpoints for different devices for the webpage. Done for tonight will finish on Saturday or tonight after school / work. Pushing to github now. 
+- **** Don't forget to delete this out of my codes folder and pull the completed project from htdocs in XAMPP when finished. **** 
