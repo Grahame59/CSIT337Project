@@ -1,39 +1,56 @@
-/* Default Navigation Styles */
+/* Default Navigation Styles --------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 body 
 {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    padding: .5; 
-}
-header /* Header Style */
-{ 
-    background-color: white;
-    color: black;
-    text-align: center; /* Aligns title head in center */
-    padding: 20px;
+    padding: 0.5em; 
+    background-color: gray;
+
 }
 
+/* Header Style ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+header 
+{ 
+
+    background-color: #42078f !important;
+    color: white !important;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+/* Navigation Styles ----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 nav 
 {
     position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: #42078f;
+
 }
+
 
 nav ul 
 {
     list-style: none;
     padding: 0;
-    text-align: center;
     background-color: #42078f;
     display: flex;
     justify-content: center;
     border: 1px solid;
     border-radius: 10px;
     margin: 10px;
+
 }
 
+/* Navigation Links -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 nav ul li 
 {
-    color:red; /* Link color */
+
     margin: 0 10px;
     text-decoration: none;
     padding: 10px 20px; /* Makes the button link box larger for clicking */
@@ -43,48 +60,60 @@ nav ul li
 
 nav ul li a 
 {
+
     color: white;
     text-decoration: none;
     padding: 10px;
 }
 
-/* Hamburger menu icon */
+/* Hamburger Menu Icon --------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .hamburger 
 {
-    display: none;
+    display: none; /* Hidden by default */
     font-size: 24px;
     cursor: pointer;
-    color: white;
+    color: #000;
+    background-color: #42078f;
     padding: 10px;
+
 }
 
-/* For mobile */
+/* Media Queries --------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 @media (max-width: 600px) 
 {
+
     nav ul 
     {
-        display: none; /* Default = hide menu */
-        flex-direction: column; /* vertical stack */
+
+        display: none; /* Hide menu by default */
+        flex-direction: column; /* Stack vertically */
         background-color: #42078f;
+        position: fixed; /* Fixed position */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         align-items: center;
+        border: 1px solid #fff;
         justify-content: center;
-        position: fixed; /* No menu scroll */
-        top: 0; left: 0; /* Anchors menu @ top-left */
-        width: 100%; height: 100%;
-        background-color: rgba(0,0,0,0.8) /* Adds transparency */
     }
+
     nav ul li 
     {
         margin: 20px 0; /* Spacing for menu links */
-        border-bottom: none;
+        background-color: #42078f;
     }
+
     .hamburger 
     {
-        display: block; /* Display Hamburger menu icon on smaller screens */
+
+        display: block; /* Show hamburger on smaller screens */
         position: absolute;
         top: 15px;
         right: 15px;
         z-index: 1;
+        color: black !important;
+        /*background-color: #42078f; */
     }
 }
 
@@ -92,75 +121,105 @@ nav ul li a
 {
     nav ul 
     {
+        background-color: #42078f;
         display: flex; /* Show menu items in header */
-        justify-content: center;
         padding: 10px 0;
     }
 
     nav ul li 
     {
         margin: 0 15px;
+
+
     }
 }
 
-/* Info section styke */
-.info-section 
+/* Info Section Style ---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.info-section, .yurts-info 
 {
-    padding: 20px;
+    padding: 40px;
     text-align: left;
     background-color: #f9f9f9; /* Light color for contrast */
 
 }
-.info-section ul 
+
+.info-section ul, .yurts-info ul 
 {
     list-style-type: disc; /* Default bullet points for index list */
-    padding-left: 40px; /* indents list from left */
-    display: inline-block;
+    padding-left: 40px; /* Indents list from left */
     margin: 0 auto;
 }
-.info-section li
+
+/* Yurt Section Style ---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.yurts-info 
 {
-    margin: 10px;
+    text-align: left; /* Default text alignment */
+
 }
 
-/* Yurt Section style ----------------------------------------------------------------------------*/
-.yurts-info
-{
-    padding: 40px;
-    text-align: left;
-    background-color: #f9f9f9; /* color for contrast */
-}
 @media (max-width: 576px) 
 {
+
     .yurts-info 
     {
         text-align: center; /* Center-align text on small screens */
     }
 
+
     .yurts-info h2, .yurts-info h3 
     {
         margin: 15px 0; /* Margin for smaller screens */
+    }
+
+    ul 
+    {
+        display: none; /* Hide links by default */
+        flex-direction: column;
+        width: 100%;
+
+    }
+
+    ul.show 
+    {
+        display: flex; /* Show links when toggled */
+    }
+
+    li 
+    {
+
+        padding: 10px;
+        text-align: center; /* Center-align items */
     }
 }
 
 @media (min-width: 577px) 
 {
-    .yurts-info 
+    ul 
     {
-        text-align: left; /* Left-align text on large screens */
+        display: flex; /* Show links in a row on larger screens */
+
+    }
+
+    li 
+    {
+        padding: 20px;
+
     }
 }
 
-/* Reservation Section style ---------------------------------------------------------------------*/
+
+/* Reservation Section Style --------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .reservation-table 
 {
     text-align: left;
-    padding: 20px;
+    padding: 40px;
     width: 60%;
     background-color: #f8f8f8; 
     border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
+
 
 .reservation-table table 
 {
@@ -168,60 +227,62 @@ nav ul li a
     border-collapse: collapse;
 }
 
-.reservation-table td
+
+.reservation-table td 
 {
     padding: 10px;
-    
 }
 
-@media (max-width: 576px)
+
+@media (max-width: 576px) 
 {
-    .reservation-table
+
+    .reservation-table 
     {
+
         text-align: center;
-        
-    }
-
-}
-
-@media (max-width: 577px)
-{
-    .reservation-table
-    {
-        text-align: left;
-        padding: 20px;
     }
 }
 
-/* Activities Section style ----------------------------------------------------------------------*/
-activities 
+/* Activities Section Style ---------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.activities 
 {
     padding: 40px;
     text-align: center; 
+
 }
 
 .activity-grid 
 {
+
     display: grid; 
     grid-template-columns: repeat(2, 1fr); /* 2x2 */
-    gap: 15px; /* padding between images */
-    padding: 20px; /* padding for left and right side of pages for img grid */
+    gap: 15px; /* Padding between images */
+    padding: 20px; /* Padding for left and right side of pages for img grid */
 }
+
 
 .activity-grid img 
 {
-    width: 100%; height: 300px;
-    object-fit:cover; /* forces images to cover the area they are assigned */
+
+    width: 100%;
+    height: 300px;
+    object-fit: cover; /* Forces images to cover the area they are assigned */
     border-radius: 8px; /* Rounded corners */
     cursor: pointer; 
+
 }
+
 
 .overlay 
 {
-    display: none; /* default = hidden */
+
+    display: none; /* Default = hidden */
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.8); 
     justify-content: center;
     align-items: center;
@@ -229,37 +290,55 @@ activities
 
 .full-image 
 {
-    max-width: 90%; max-height: 90%; /* Limit full image height/width */
+
+    max-width: 90%; 
+    max-height: 90%; /* Limit full image height/width */
 }
 
-/* Responsive Styles */
+/* Responsive Styles for Activities -------------------------------------------------------------------------------------------------------------------------------------------------------*/
 @media (max-width: 576px) 
 {
     .activity-grid 
     {
-        grid-template-columns: repeat(1, 1fr); /* 1 columns on small devices */
+
+        grid-template-columns: repeat(1, 1fr); /* 1 column on small devices */
     }
+
 }
 
 @media (min-width: 577px) and (max-width: 768px) 
 {
     .activity-grid 
     {
-        grid-template-columns: repeat(2, 1fr); /* 2 colums on med devices */
+
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium devices */
     }
 }
 
-@media (min-width: 769px) 
+/* Comments Style ------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.comments-form 
 {
-    .activity-grid 
-    {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on large devices */
-    }
+
+    text-align: left;
+    padding: 40px;
+    background-color: #f9f9f9; 
+    border-radius: 8px; 
+    margin: 20px auto; 
+    width: 80%; 
+    max-width: 600px; 
 }
 
-/* Footer style ----------------------------------------------------------------------------------*/
+.comments-form label 
+{
+
+    display: block; 
+    margin: 10px 0 5px; 
+}
+
+/* Footer Style ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 footer 
 {
+
     background-color: #42078f;
     color: white;
     text-align: center;
@@ -269,5 +348,5 @@ footer
     border: 1px solid;
     border-radius: 10px;
     margin: 30px;
-    
+
 }

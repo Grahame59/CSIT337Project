@@ -17,3 +17,11 @@ A Website midterm project for CSIT 337 @ Montclair State University.
 # Timeline / Self Notes and Progress
 - (10/31/24 - 9:53pm -> 11/1/24 - 2:23am) Completed the main features of index, activities, yurts, reservations. As well as most of the CSS for these pages, and polished most of the code for these pages already. Have to do comments page still and then check the mobile viewpoints for different devices for the webpage. Done for tonight will finish on Saturday or tonight after school / work. Pushing to github now. 
 - **** Don't forget to delete this out of my codes folder and pull the completed project from htdocs in XAMPP when finished. **** 
+- Didn't add different types of sweets such as king, queen, luxary, normal, etc...
+- Had the most trouble with making the form read-only after submit is clicked so attempting to just create a display table with all the data
+- Didn't use any bootstrap and did it all from scratch, regretting this as it took me quite awhile to get the hamburger button functional and the CSS for its aesthetics still are incorrect as it is white and the nav bar is white when in mobile view of a 600px or smaller and I CANNOT for the life of me figure out why. 
+
+# Some Resources
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil 
+- https://www.w3schools.com/php/php_intro.asp
+

@@ -8,21 +8,21 @@
 </head>
 <body>
     <header>
-        <h1> Grahame's Resort - Reservation</h1>
-            <nav>
-            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="yurts.php">Yurts</a></li>
-                    <li><a href="activities.php">Activities</a></li>
-                    <li><a href="reservation.php">Reservation</a></li>
-                    <li><a href="comments.php">Comments</a></li>
-                </ul>
-            </nav>
+        <h1>GRAHAME'S RESORT</h1> <!-- Header Title --> 
+        <nav>
+            <div class="hamburger" onclick="toggleHamMenu()">☰</div>
+            <ul id = "nav-links"> <!-- Nav links -->
+                <li><a href="index.php">Home</a></li>
+                <li><a href="yurts.php">Yurts</a></li>
+                <li><a href="activities.php">Activities</a></li>
+                <li><a href="reservation.php">Reservation</a></li>
+                <li><a href="comments.php">Comments</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
         <section class = "reservation-table">
-            <form action="#" method="post">
+            <form id="reservationForm" action="#" method="post" onsubmit="submitForm(event)">
                 <table>
                     <tr>
                         <td><label for="firstName">First Name:</label></td>
@@ -124,6 +124,21 @@
                     </tr>
 
                     <tr>
+                        <td><label for="numOfGuests">Number of Guests:</label></td>
+                        <td>
+                            <select id = "numOfGuests" name ="numOfGuests" required>
+                                <option value = "0"> # of Guests?</option>
+                                <option value = "1">1 Guest</option>
+                                <option value = "2">2 Guests</option>
+                                <option value = "3">3 Guests</option>
+                                <option value = "4">4 Guests</option>
+                                <option value = "5">5 Guests</option>
+                                <option value = "6">6 Guests</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td><label for="phoneNumber">Phone:</label></td>
                         <td><input type="tel" id="phoneNumber" name="phoneNumber" placeholder="(xxx) xxx-xxxx" required></td>
                     </tr>
@@ -135,7 +150,7 @@
 
                     <tr>
                         <td><label for="cardNumber">Card Number:</label></td>
-                        <td><input type="text" id="cardNumber" name="cardNumber" required></td>
+                        <td><input type="tel" id="cardNumber" name="cardNumber" required></td>
                     </tr>
 
                     <tr>
@@ -155,6 +170,11 @@
                         <td><label for="specialRequests">Special Requests:</label></td>
                         <td><textarea id="specialRequests" name="specialRequests" rows="4" placeholder="Optional"></textarea></td>
                     </tr>
+                    
+                    <tr>
+                        <td><label for="totalCharge">Total Charge:</label></td>
+                        <td><span id="totalCharge">$0</span></td>
+                    </tr>
 
                     <tr>
                         <td colspan="2">
@@ -164,21 +184,218 @@
                     </tr>
                 </table>
             </form>
+            <?php
+
+                    function calcPrice($checkInDate, $checkOutDate, $numOfGuests) 
+                    {
+                    
+                        $checkIn = new DateTime($checkInDate);
+                        $checkOut = new DateTime($checkOutDate);
+                        $durationOfStay = $checkIn->diff($checkOut)->days;
+                        $taxRate = 1.07;
+                        $guestIncrementCharge = ($numOfGuests * 50);
+                        $pricePerNightPerGuest = 200; 
+                        $totalPrice = $durationOfStay * ($pricePerNightPerGuest + $guestIncrementCharge) * $taxRate;
+                    
+                        return $totalPrice;
+                    }
+
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") 
+                    {
+
+                    // Get form inputs
+                    $firstName = !empty($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : "Guest";
+                    $lastName = !empty($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : "";
+                    $streetAddress = htmlspecialchars($_POST['streetAddress']);
+                    $city = htmlspecialchars($_POST['city']);
+                    $state = htmlspecialchars($_POST['state']);
+                    $zipCode = htmlspecialchars($_POST['zipCode']);
+                    $checkInDate = htmlspecialchars($_POST['checkInDate']);
+                    $checkOutDate = htmlspecialchars($_POST['checkOutDate']);
+                    $numOfGuests = htmlspecialchars($_POST['numOfGuests']);
+                    $phoneNumber = htmlspecialchars($_POST['phoneNumber']);
+                    $guestEmail = htmlspecialchars($_POST['emailAddress']);
+                    $specialRequests = htmlspecialchars($_POST['specialRequests']);
+                    $paymentType = htmlspecialchars($_POST['paymentMethod']);
+                    $cardNumber = htmlspecialchars($_POST['cardNumber']);
+                    $TotalPrice = calcPrice($checkInDate, $checkOutDate, $numOfGuests);
+                    
+                    // Output the response header
+                    echo "<h2>Thank you, $firstName $lastName, for your reservation!</h2>";
+                    echo "<p>Here are your reservation details:</p>";
+                    echo "<p>Check-in Date: $checkInDate</p>";
+                    echo "<p>Check-out Date: $checkOutDate</p>";
+                    echo "<p>Number of Guests: $numOfGuests</p>";
+                    echo "<p>Phone Number: $phoneNumber</p>";
+                    echo "<p>Email Address: $guestEmail</p>";
+                    echo "<p>Payment Type: $paymentType</p>";
+                    echo "<p>cardNumber: $cardNumber</p>";
+                    echo "<p>Total Charge: $" . number_format($TotalPrice, 2) . "</p>";
+                    
+                    // Optional: Show special requests if any
+                    if (!empty($specialRequests)) 
+                    {
+                        echo "<p>Special Requests: $specialRequests</p>";
+                    } else 
+                    {
+                        echo "<p>No special requests made.</p>";
+                    }
+                } else 
+                {
+                    echo "<h2>Please submit your reservation form.</h2>";
+                }
+            ?>
         </section>
     </main>
+    
     <footer>
-        <p>&copy; 2024 Your Team's Resort. All rights reserved.</p>
+        <p>&copy; 2024 Grahame's Resort. All rights reserved.</p>
     </footer>
+
     <script>
-        function toggleHamMenu() {
-            const menu = document.querySelector('nav ul');
-            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    function toggleHamMenu() 
+    {
+        const navLinks = document.getElementById("nav-links");
+        // Turn off and on the menu
+        if (navLinks.style.display === "flex") {
+            navLinks.style.display = "none";
+        } else {
+            navLinks.style.display = "flex";
         }
+    }
     </script>
-     <script>
-        function clearForm() {
-            document.querySelector("form").reset(); // Clear all form fields
+
+    <script>
+        /* function submitForm(event) 
+        {
+            event.preventDefault(); // Prevent default form submission
+
+            // Form values carried
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const streetAddress = document.getElementById("streetAddress").value;
+            const city = document.getElementById("city").value;
+            const state = document.getElementById("state").value;
+            const zipCode = document.getElementById("zipCode").value;
+            const checkInDate = document.getElementById("checkInDate").value;
+            const checkOutDate = document.getElementById("checkOutDate").value;
+            const numOfGuests = document.getElementById("numOfGuests").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const guestEmail = document.getElementById("emailAddress").value;
+            const specialRequests = document.getElementById("specialRequests").value;
+            const paymentType = document.getElementById("paymentMethod").value;
+            const cardNumber = document.getElementById("cardNumber").value;
+
+            const totalCharge = calcPrice(checkInDate, checkOutDate, numOfGuests);
+
+            // Creates an info table after submit is clicked
+            const orderConfirmedTable = `
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Data</th>
+                    </tr>
+                    <tr>
+                        <td>First Name</td>
+                        <td>${firstName}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>${lastName}</td>
+                    </tr>
+                    <tr>
+                        <td>Street Address</td>
+                        <td>${streetAddress}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>${city}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>${state}</td>
+                    </tr>
+                    <tr>
+                        <td>Zip Code</td>
+                        <td>${zipCode}</td>
+                    </tr>
+                    <tr>
+                        <td>Check-In Date</td>
+                        <td>${checkInDate}</td>
+                    </tr>
+                    <tr>
+                        <td>Check-Out Date</td>
+                        <td>${checkOutDate}</td>
+                    </tr>
+                    <tr>
+                        <td>Number of Guests</td>
+                        <td>${numOfGuests}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td>${phoneNumber}</td>
+                    </tr>
+                    <tr>
+                        <td>Email Address</td>
+                        <td>${guestEmail}</td>
+                    </tr>
+                    <tr>
+                        <td>Special Requests</td>
+                        <td>${specialRequests}</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Type</td>
+                        <td>${paymentType}</td>
+                    </tr>
+                    <tr>
+                        <td>Card Number</td>
+                        <td>${cardNumber}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Charge</td>
+                        <td>$${totalCharge.toFixed(2)}</td>
+                    </tr>
+                </table>
+            `;
+
+            // Display the table
+            document.getElementById("output").innerHTML = orderConfirmedTable;
+            document.getElementById("output").style.display = 'block'; // Show the output table
+            document.getElementById("reservationForm").style.display = 'none'; // Hide the form
         }
+        */
+        function clearForm() {
+            document.getElementById("reservationForm").reset(); // Clear all form fields
+            document.getElementById("totalCharge").innerText = "$0"; // Reset totalCharge to $0 on clear.
+            document.getElementById("output").innerHTML = ""; // Clear the output table
+            document.getElementById("output").style.display = 'none'; // Hide the output table
+        }
+  
+        /*
+        function calcPrice(checkIn, CheckOut, numOfGuests)
+        {
+            const checkInDate = new Date(checkIn);
+            const checkOutDate = new Date(checkOut);
+            const numOfGuestsInt = parseInt(numOfGuests);
+            let difference = Math.abs(checkOutDate - checkInDate);
+
+            if (difference < 1)
+            {
+            difference = 1; // Ensure 1 day stays. Only did this due to the instructions b/c I don't really see how in real life you could book a hotel room for 1 day with no night stay or
+                            // why you would do this. 
+            }
+
+            const ratePerNight = 200;
+            const taxRate = 1.07;
+            const guestCharge = 50;
+            const guestAddOn = guestCharge * numOfGuestsInt; // 50 * numOfPeople
+
+            const totalPrice = Math.ceil(difference * (ratePerNight + guestAddOn)) * taxRate; 
+            return totalPrice;
+        
+        }
+        */
+
     </script>
 </body>
 </html>

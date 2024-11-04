@@ -8,17 +8,17 @@
 </head>
 <body>
     <header>
-        <h1> Grahame's Resort - Activities</h1>
-            <nav>
-            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="yurts.php">Yurts</a></li>
-                    <li><a href="activities.php">Activities</a></li>
-                    <li><a href="reservation.php">Reservation</a></li>
-                    <li><a href="comments.php">Comments</a></li>
-                </ul>
-            </nav>
+        <h1>GRAHAME'S RESORT</h1> <!-- Header Title --> 
+        <nav>
+            <div class="hamburger" onclick="toggleHamMenu()">☰</div>
+            <ul id = "nav-links"> <!-- Nav links -->
+                <li><a href="index.php">Home</a></li>
+                <li><a href="yurts.php">Yurts</a></li>
+                <li><a href="activities.php">Activities</a></li>
+                <li><a href="reservation.php">Reservation</a></li>
+                <li><a href="comments.php">Comments</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -41,22 +41,32 @@
     </div>
 
     <script>
-        function showImage(src) {
+        function showImage(src) 
+        {
             const overlay = document.getElementById('overlay');
             const fullImage = document.getElementById('fullImage');
             fullImage.src = src;
             overlay.style.display = 'block'; // Show overlay
         }
 
-        function hideImage() {
+        function hideImage() 
+        {
             const overlay = document.getElementById('overlay');
             overlay.style.display = 'none'; // Hide overlay
         }
 
-        function toggleHamMenu() {
-            const menu = document.querySelector('nav ul');
-            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+       
+        function toggleHamMenu() 
+        {
+            const navLinks = document.getElementById("nav-links");
+            // Turn off and on the menu
+            if (navLinks.style.display === "flex") {
+                navLinks.style.display = "none";
+            } else {
+                navLinks.style.display = "flex";
+            }
         }
+    </script>
     </script>
 </body>
 </html>

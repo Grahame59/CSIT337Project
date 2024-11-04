@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Inital zoom and device view -->
     <link rel="stylesheet" href="style.css"> <!-- CSS link -->
-    <title>Grahame's Resort Home Page</title>
+    <title>Grahame's Resort - Home Page</title>
 </head>
 <body>
     <header>
         <h1>GRAHAME'S RESORT</h1> <!-- Header Title --> 
         <nav>
             <div class="hamburger" onclick="toggleHamMenu()">☰</div>
-            <ul> <!-- Nav links -->
+            <ul id = "nav-links"> <!-- Nav links -->
                 <li><a href="index.php">Home</a></li>
                 <li><a href="yurts.php">Yurts</a></li>
                 <li><a href="activities.php">Activities</a></li>
@@ -41,15 +41,17 @@
     </footer>
 
 
-<script>
-    function toggleHamMenu() 
-    {
-        const navLinks = document.getElementById("nav-links");
-        // Turn off and on the menu
-        if (navLinks.style.display === "flex") {
-            navLinks.style.display = "none";
-        } else {
-            navLinks.style.display = "flex";
+    <script>
+        function toggleHamMenu() 
+        {
+            const navLinks = document.getElementById("nav-links");
+            // Turn off and on the menu
+            if (navLinks.style.display === "flex") {
+                navLinks.style.display = "none";
+            } else {
+                navLinks.style.display = "flex";
+            }
         }
-    }
-</script>
+    </script>
+</body>
+</html>
